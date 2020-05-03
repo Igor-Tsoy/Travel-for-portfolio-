@@ -23,12 +23,12 @@ DB_HOST = os.environ.get('DB_HOST')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i)c7dqz19*am0r$$(0v5%xxwl+k_tk$1goycvqy@et^)n+*cuu'
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = 'i)c7dqz19*am0r$$(0v5%xxwl+k_tk$1goycvqy@et^)n+*cuu'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://travel-portf.herokuapp.com']
 
 
 # Application definition
