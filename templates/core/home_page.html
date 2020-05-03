@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Города
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4 text-center my-4">Города</h1>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <table class="table table-striped">
+  <tbody>
+
+    {% for city in cities %}
+    <tr>
+      <td scope="row"><a href="{% url 'core:detail_view' pk=city.id %}">{{city.name}}</a></td>
+      <td><a href="{% url 'core:update' pk=city.id %}">
+        <button type="button" class="btn btn-outline-primary btn-sm">
+          Изменить </button>
+      </a></td>
+      <td><a href="{% url 'core:delete' pk=city.id %}">
+        <button type="button" class="btn btn-outline-danger btn-sm">
+          Удалить </button>
+      </a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <a href="{% url 'core:add' %}">
+        <button type="button" class="btn btn-success">
+          Добавить город
+        </button>
+    </a>
+  </div>
+</div>
+
+<div class="row my-4">
+  <div class="col-md-6 mx-auto ">
+    <nav aria-label="...">
+      <ul class="pagination">
+
+        {% for number in num_pages %}
+        <li class="page-item{% if number == cities.number %} active {% endif %} ">
+          <a class="page-link" href="?page={{ number }}">
+            {{ number }}
+          </a>
+        </li>
+        {% endfor %}
+
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{% endblock %}

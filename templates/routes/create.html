@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Сохранение маршрута
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4 mx-5">Сохранить новый маршрут</h1>
+<div class="row mx-5">
+  <div class="col-md-6">
+      <form action="", method="POST"> {% csrf_token %}
+          <h4>Маршрут из {{from_city}} в {{to_city}}</h4>
+          <p>Время в пути: {{travel_time}}</p>
+          <p>Маршрут состоит из:</p>
+          {% for desc in descr %}
+          <li>{{desc}}</li>
+          {% endfor %}
+          <br>
+      {{ form.as_p }}
+          <input type="submit" value="Сохранить">
+</form>
+  </div>
+</div>
+
+
+{% endblock %}

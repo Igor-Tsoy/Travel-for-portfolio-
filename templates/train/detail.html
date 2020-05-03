@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Город
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4 mx-5">Поезд: {{object.name}}</h1>
+<div class="row">
+  <div class="col-md-6 mx-5">
+      <p>
+          Город отправления: {{object.from_city}}
+      </p>
+      <p>
+          Город прибытия: {{object.to_city}}
+      </p>
+      <p>
+          Время в пути: {{object.travel_time}}
+      </p>
+  </div>
+</div>
+<div class="dropdown row mx-5">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Назад
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'core:home_page' %}">К списку городов</a>
+    <a class="dropdown-item" href="{% url 'train:home' %}">К списку поездов</a>
+    <a class="dropdown-item" href="{% url 'route:list' %}">К списку маршрутов</a>
+  </div>
+</div>
+
+{% endblock %}

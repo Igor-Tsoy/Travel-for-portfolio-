@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+Поезда
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4 text-center my-4">Поезда</h1>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>
+                Номер поезда
+            </td>
+            <td>
+                Город отправления
+            </td>
+            <td>
+                Город прибытия
+            </td>
+            <td>
+                Время в пути
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        </thead>
+  <tbody>
+
+    {% for train in trains %}
+    <tr>
+      <td scope="row">
+          <a href="{% url 'train:detail_view' pk=train.id %}">
+              {{train.name}}
+          </a>
+      </td>
+        <td>
+            <a href="{% url 'core:detail_view' pk=train.from_city.id %}">
+                {{train.from_city}}
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'core:detail_view' pk=train.to_city.id %}">
+            {{train.to_city}}
+            </a>
+        </td>
+        <td>
+            {{train.travel_time}}
+        </td>
+      <td>
+          <a href="{% url 'train:update' pk=train.id %}">
+              <button type="button" class="btn btn-outline-primary btn-sm">
+          Изменить
+              </button>
+          </a>
+      </td>
+      <td>
+          <a href="{% url 'train:delete' pk=train.id %}">
+            <button type="button" class="btn btn-outline-danger btn-sm">
+            Удалить
+            </button>
+          </a>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <a href="{% url 'train:add' %}">
+        <button type="button" class="btn btn-success">
+          Добавить поезд
+        </button>
+    </a>
+  </div>
+</div>
+
+<div class="row my-4">
+  <div class="col-md-6 mx-auto ">
+    <nav aria-label="...">
+      <ul class="pagination">
+        {% for number in num_pages %}
+        <li class="page-item{% if number == trains.number %} active {% endif %} ">
+          <a class="page-link" href="?page={{ number }}">
+            {{ number }}
+          </a>
+        </li>
+        {% endfor %}
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{% endblock %}
